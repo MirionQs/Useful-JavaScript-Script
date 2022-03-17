@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         b站传统连播方式
-// @version      2022.2.7
+// @version      2022.3.17
 // @author       Mirion
 // @match        https://www.bilibili.com/video/*
 // ==/UserScript==
@@ -120,8 +120,9 @@
 				if (cardCount > 8) {
 					cardCount = 8
 				}
-				let videoListHeight = cardCount * 34 + 8 + 'px'
-				_('.video-sections-content-list').style = `height:${videoListHeight};max-height:${videoListHeight}`
+                
+				let videoListHeight = cardCount * 34 + 14 + 'px'
+				_('.video-sections-content-list').style = `height:${videoListHeight};max-height:10000px`
 
 				// 连播逻辑
 				if (collectionAutoplay) {
