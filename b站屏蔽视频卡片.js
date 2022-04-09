@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         b站屏蔽视频卡片
-// @version      2022.2.9
+// @version      2022.4.9
 // @author       Mirion
 // @match        https://www.bilibili.com/*
 // ==/UserScript==
@@ -11,7 +11,17 @@
 	window.onload = () => {
 
 		// 用户设置
-		var titleKeywordList = [] // 标题关键词屏蔽列表
+		var titleKeywordList = [
+			'原神', '幻塔', '胡桃', '钟离', '米哈游', '雄狮少年', '紫晶矿', // 晦气
+			'王者荣耀', '崩三', '第五人格', '英雄联盟', '手游', // 手游
+			'学霸', '学渣', '高三', '高中', '高考', '涨分', '提分', '自习', '学姐', '中考', '刷题', '成绩', '学习', // 应试
+			'身材', '健身', '脂肪', '减肥', '瘦身', '减脂', // 健身
+			'拖延', '戒断', '矫正', '自律', '高效', // 健康生活
+			'亲身经历', '我做的', '我开发', '自制', // “亲自”
+			'小姐姐', '网文', // 低俗
+			'小米', '手机', // 手机
+			'大厂面试', '元宇宙' // 其它
+		] // 标题关键词屏蔽列表
 		var upList = [] // up主屏蔽列表
 
 		// 辅助函数
@@ -34,6 +44,11 @@
 			return
 		}
 		console.log(`[屏蔽视频卡片] 当前页面类型: ${pageType}`)
+        
+		// 隐藏特别推荐
+		var style = document.createElement("style")
+		style.innerHTML = '.video-page-special-card-small { display:none; }'
+		document.body.appendChild(style)
 
 		// 主页逻辑
 		if (pageType == 'main') {
